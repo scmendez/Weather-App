@@ -1,0 +1,104 @@
+h2 {
+  font-size: 24px;
+  color: #add8e6;
+  font-weight: 300;
+}
+.entire-app {
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  margin: 10px auto;
+  padding: 10px;
+  border: solid 1px green;
+  border-radius: 10px;
+  width: 500px;
+  box-shadow: 5px 5px 8px lightgray;
+}
+/* Search Section*/
+.search-button,
+.current-location-button {
+  color: #fff;
+  font-size: 24px;
+  margin: 6px;
+}
+
+/* Current Info*/
+.current-day-temp-title {
+  color: #fff;
+}
+.current-day-high {
+  color: #fcc29a;
+}
+.current-day-low {
+  color: #29d2e4;
+}
+
+.currently-title {
+  color: #fff;
+  margin: 0 0 0 50px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.current-day-temp {
+  display: block;
+  text-align: center;
+  font-size: 60px;
+}
+.temp-units,
+.celsius-link,
+.fahrenheit-link {
+  font-size: 14px;
+  top: 0;
+  color: #fff;
+  margin-top: 0;
+  position: relative;
+  top: -44px;
+  right: -105px;
+}
+.current-day-weather {
+  color: #fff;
+  margin: 0 0 0 75px;
+}
+.current-weather-icon {
+  font-size: 36px;
+}
+.current-weather-word {
+  font-size: 24px;
+  vertical-align: baseline;
+}
+/* Right Details */
+.weather-details {
+  text-align: left;
+}
+.detail-titles {
+  color: white;
+}
+
+/* Weather Forecast*/
+.weather-forecast {
+  text-align: center;
+}
+.day-name,
+.day-date,
+.day-icon,
+.day-high,
+.day-low {
+  display: block;
+}
+.day-name {
+  color: #fff;
+  font-weight: bold;
+}
+.day-date {
+  color: #add8e6;
+  padding: 0 0 5px 0;
+}
+.weather-icons {
+  color: white;
+  font-size: 36px;
+}
+.day-high {
+  color: #fcc29a;
+}
+.day-low {
+  color: #29d2e4;
+}
