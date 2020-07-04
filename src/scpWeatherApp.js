@@ -1,3 +1,6 @@
+//Axios
+src = "https://unpkg.com/axios/dist/axios.min.js";
+
 //to update date and time, currently set to default (running on refresh)
 let now = new Date();
 
@@ -35,12 +38,29 @@ if (min < 10) {
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = `${day}, ${month} ${date}, ${year} <br /> ${hour}:${min}`;
 
+//trying time code
+
+function getSunrise(response) {
+  let sunriseTime = new Date(response * 1000);
+  let hour = sunriseTime.getHours();
+  let min = sunriseTime.getMinutes();
+  let time = `${hour}:${min}`;
+  document.querySelector("#sunrise-info").innerHTML = time;
+}
+
 //main function updating everything
 function updateLocationAndConditions(response) {
   document.querySelector("#searched-city").innerHTML = response.data.name;
   document.querySelector("#temp-element").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#wind-info").innerHTML = response.data.wind.speed;
+  document.querySelector("#humidity-info").innerHTML =
+    response.data.main.humidity;
+  getSunrise(response);
+  document.querySelector("#sunset-info").innerHTML = moment(
+    response.data.sys.sunset
+  ).format("HH:mm:ss");
 }
 
 //submit and search button functions

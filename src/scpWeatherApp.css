@@ -3,6 +3,7 @@ h2 {
   color: #add8e6;
   font-weight: 300;
 }
+
 .entire-app {
   background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
   margin: 10px auto;
@@ -12,6 +13,7 @@ h2 {
   width: 500px;
   box-shadow: 5px 5px 8px lightgray;
 }
+
 /* Search Section*/
 .search-button,
 .current-location-button {
@@ -31,41 +33,31 @@ h2 {
 .current-day-low {
   color: #29d2e4;
 }
-
-.currently-title {
-  color: #fff;
-  margin: 0 0 0 50px;
-  font-weight: bold;
-  font-size: 24px;
-}
-
 .current-day-temp {
   display: block;
   text-align: center;
   font-size: 60px;
 }
-.temp-units,
-.celsius-link,
-.fahrenheit-link {
+.temp-units {
   font-size: 14px;
-  top: 0;
   color: #fff;
-  margin-top: 0;
   position: relative;
-  top: -44px;
-  right: -105px;
+  top: -100px;
+  right: -200px;
 }
-.current-day-weather {
+.temp-units a {
+  color: #fff;
+}
+.current-day-weather-description {
   color: #fff;
   margin: 0 0 0 75px;
-}
-.current-weather-icon {
   font-size: 36px;
 }
-.current-weather-word {
+.current-day-weather-word {
   font-size: 24px;
   vertical-align: baseline;
 }
+
 /* Right Details */
 .weather-details {
   text-align: left;
@@ -104,6 +96,7 @@ h2 {
   color: #29d2e4;
 }
 
+/* GitHub link */
 .GitHub-link {
   display: block;
   text-align: center;

@@ -58,32 +58,27 @@
               <span class="current-day-low">16°</span>
             </p>
             <div class="current-info">
-              <span class="currently-title">
-                Currently
-              </span>
               <span class="current-day-temp" id="temp-element">
                 30</span> <span class="temp-units">
-                  <a href="#" class="celsius-link" id="celsius-link">°C</a> &nbsp;
-                  <a href="#" class="fahrenheit-link" id="fahrenheit-link">°F</a>
+                  <a href="#" id="celsius-link">°C</a> |
+                  <a href="#" id="fahrenheit-link">°F</a>
                 </span>
-              <span class="current-day-weather">
+              <span class="current-day-weather-description">
                 <i class="fas fa-sun current-weather-icon"></i>
-                <span class="current-weather-word">Sunny</span>
+                <span class="current-day-weather-word">Sunny</span>
               </span>
             </div>
           </div>
 
           <div class="col-3 weather-details">
             <div class="row detail-titles">Wind</div>
-            <div class="row">13 km/hr</div>
+            <div class="row"><span id="wind-info"></span>&nbsp;km/hr</div>
             <div class="row detail-titles">Humidity</div>
-            <div class="row">32%</div>
-            <div class="row detail-titles">Precipitation</div>
-            <div class="row">0 mm</div>
+            <div class="row"><span id="humidity-info"></span>%</div>
             <div class="row detail-titles">Sunrise</div>
-            <div class="row">6:52 AM</div>
+            <div class="row" id="sunrise-info">12:00 AM</div>
             <div class="row detail-titles">Sunset</div>
-            <div class="row">9:31 PM</div>
+            <div class="row" id="sunset-info">12:00 PM</div>
           </div>
         </div>
 
