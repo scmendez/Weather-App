@@ -50,12 +50,13 @@ h2 {
 }
 .current-day-weather-description {
   color: #fff;
-  margin: 0 0 0 75px;
+  margin: 0 0 0 50px;
   font-size: 36px;
 }
 .current-day-weather-word {
   font-size: 24px;
   vertical-align: baseline;
+  text-transform: capitalize;
 }
 
 /* Right Details */

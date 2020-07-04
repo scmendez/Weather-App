@@ -1,66 +1,91 @@
 //Axios
 src = "https://unpkg.com/axios/dist/axios.min.js";
 
-//to update date and time, currently set to default (running on refresh)
-let now = new Date();
+//sunrise, sunset, and current time functions
+function currentDate(timestamp) {
+  let now = new Date(timestamp);
 
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-let day = days[now.getDay()];
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[now.getDay()];
 
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-let month = months[now.getMonth()];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[now.getMonth()];
 
-let date = now.getDate();
-let year = now.getFullYear();
+  let date = now.getDate();
+  let year = now.getFullYear();
 
-let hour = now.getHours();
-if (hour < 10) {
-  hour = `0${hour}`;
+  let hour = now.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let min = now.getMinutes();
+  if (min < 10) {
+    min = `0${min}`;
+  }
+
+  return `${day}, ${month} ${date}, ${year} <br /> ${hour}:${min}`;
 }
-let min = now.getMinutes();
-if (min < 10) {
-  min = `0${min}`;
-}
 
-let currentDate = document.querySelector("#current-date");
-currentDate.innerHTML = `${day}, ${month} ${date}, ${year} <br /> ${hour}:${min}`;
-
-//trying time code
-
-function getSunrise(response) {
-  let sunriseTime = new Date(response * 1000);
+function sunriseTime(timestamp) {
+  let sunriseTime = new Date(timestamp);
   let hour = sunriseTime.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
   let min = sunriseTime.getMinutes();
-  let time = `${hour}:${min}`;
-  document.querySelector("#sunrise-info").innerHTML = time;
+  if (min < 10) {
+    min = `0${min}`;
+  }
+  return `${hour}:${min}`;
+}
+
+function sunsetTime(timestamp) {
+  let sunsetTime = new Date(timestamp);
+  let hour = sunsetTime.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let min = sunsetTime.getMinutes();
+  if (min < 10) {
+    min = `0${min}`;
+  }
+  return `${hour}:${min}`;
 }
 
 //main function updating everything
 function updateLocationAndConditions(response) {
+  console.log(response.data);
   document.querySelector("#searched-city").innerHTML = response.data.name;
+  document.querySelector("#current-date").innerHTML = currentDate(
+    response.data.dt * 1000
+  );
   document.querySelector("#temp-element").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#current-day-weather-word").innerHTML =
+    response.data.weather[0].description;
   document.querySelector("#wind-info").innerHTML = response.data.wind.speed;
   document.querySelector("#humidity-info").innerHTML =
     response.data.main.humidity;
-  getSunrise(response);
-  document.querySelector("#sunset-info").innerHTML = moment(
-    response.data.sys.sunset
-  ).format("HH:mm:ss");
+  document.querySelector("#sunrise-info").innerHTML = sunriseTime(
+    response.data.sys.sunrise * 1000
+  );
+  document.querySelector("#sunset-info").innerHTML = sunsetTime(
+    response.data.sys.sunset * 1000
+  );
 }
 
 //submit and search button functions
