@@ -97,11 +97,99 @@ function updateLocationAndConditions(response) {
   );
 }
 
+//forecast functions
+
+function forecastDay(timestamp) {
+  let forecastDays = new Date(timestamp);
+  let dayOptions = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  let forecastDay = dayOptions[forecastDays.getDay()];
+  return `${forecastDay}`;
+}
+
+function forecastDate(timestamp) {
+  let forecastDates = new Date(timestamp);
+  let dateOptions = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+  ];
+  let forecastDateDay = dateOptions[forecastDates.getDate()];
+  let monthOptions = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+  let forecastDateMonth = monthOptions[forecastDates.getMonth()];
+  return `${forecastDateDay}/${forecastDateMonth}`;
+}
+
+function updateForecast(response) {
+  console.log(response);
+
+  let forecast = null;
+  document.querySelector("#weather-forecast").innerHTML = null;
+
+  for (let index = 0; index < 6; index++) {
+    let forecast = response.data.daily[index];
+    document.querySelector("#weather-forecast").innerHTML += `
+  <div class="col day-one">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+      <div class="row day-high">${Math.round(forecast.temp.max)}°</div>
+      <div class="row day-low">${Math.round(forecast.temp.min)}°</div>
+  </div>
+  `;
+  }
+}
+
 //submit and search button functions
 function searchCity(city) {
   let apiKey = "2f036bba5972d2593243a4f078d73ef2";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(url).then(updateLocationAndConditions);
+  //add update forecast function
 }
 
 function submittedCity(event) {
@@ -115,6 +203,10 @@ function searchCurrentLocation(position) {
   let apiKey = "2f036bba5972d2593243a4f078d73ef2";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(updateLocationAndConditions);
+  //calling update forecast function
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&
+  exclude=currently,minutely,hourly&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(updateForecast);
 }
 
 function getCurrentLocation(event) {
