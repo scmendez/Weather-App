@@ -71,6 +71,7 @@ function updateLocationAndConditions(response) {
   document.querySelector("#current-date").innerHTML = currentDate(
     response.data.dt * 1000
   );
+  celsiusTemp = response.data.main.temp;
   document.querySelector("#temp-element").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -78,7 +79,7 @@ function updateLocationAndConditions(response) {
     .querySelector("#current-day-weather-icon")
     .setAttribute(
       "src",
-      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
   document
     .querySelector("#current-day-weather-icon")
@@ -121,6 +122,26 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchCurrentLocation);
 }
 
+// temp functions
+function updateToFahrenheit(event) {
+  event.preventDefault();
+  let updatedFahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  document.querySelector("#temp-element").innerHTML = Math.round(
+    updatedFahrenheitTemp
+  );
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+function updateToCelsius(event) {
+  event.preventDefault();
+  document.querySelector("#temp-element").innerHTML = Math.round(celsiusTemp);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+let celsiusTemp = null;
+
 //event listeners
 let searchCityForm = document.querySelector("#search-city");
 searchCityForm.addEventListener("submit", submittedCity);
@@ -130,3 +151,12 @@ searchCityButton.addEventListener("click", submittedCity);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", updateToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", updateToCelsius);
+
+//upon loading the page
+searchCity("Madrid");

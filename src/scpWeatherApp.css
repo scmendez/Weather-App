@@ -42,13 +42,21 @@ h2 {
   font-size: 14px;
   color: #fff;
   position: relative;
-  top: -100px;
-  right: -200px;
+  top: -110px;
+  right: -210px;
 }
 .temp-units a {
   color: #fff;
 }
+.temp-units .active {
+  color: #000;
+  cursor: default;
+}
+.temp-units .active:hover {
+  text-decoration: none;
+}
 .current-day-weather-icon {
+  display: block;
 }
 .current-day-weather-word {
   font-size: 24px;
