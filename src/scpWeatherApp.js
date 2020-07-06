@@ -67,7 +67,6 @@ function sunsetTime(timestamp) {
 
 //main function updating everything
 function updateLocationAndConditions(response) {
-  console.log(response.data);
   document.querySelector("#searched-city").innerHTML = response.data.name;
   document.querySelector("#current-date").innerHTML = currentDate(
     response.data.dt * 1000
@@ -75,6 +74,15 @@ function updateLocationAndConditions(response) {
   document.querySelector("#temp-element").innerHTML = Math.round(
     response.data.main.temp
   );
+  document
+    .querySelector("#current-day-weather-icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  document
+    .querySelector("#current-day-weather-icon")
+    .setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#current-day-weather-word").innerHTML =
     response.data.weather[0].description;
   document.querySelector("#wind-info").innerHTML = response.data.wind.speed;
