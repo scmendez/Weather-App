@@ -1,5 +1,9 @@
+h1 {
+  margin-top: -10px;
+}
+
 h2 {
-  font-size: 24px;
+  font-size: 20px;
   color: #add8e6;
   font-weight: 300;
 }
@@ -24,6 +28,12 @@ h2 {
 }
 
 /* Current Info*/
+.current-info {
+  display: block;
+}
+.current-day-high-low {
+  margin-top: -10px;
+}
 .current-day-temp-title {
   color: #fff;
 }
@@ -37,12 +47,13 @@ h2 {
   display: block;
   text-align: center;
   font-size: 60px;
+  margin: -10px;
 }
 .temp-units {
   font-size: 14px;
   color: #fff;
   position: relative;
-  top: -110px;
+  top: -80px;
   right: -210px;
 }
 .temp-units a {
@@ -56,14 +67,13 @@ h2 {
   text-decoration: none;
 }
 .current-day-weather-icon {
-  display: block;
+  width: 60px;
 }
 .current-day-weather-word {
   font-size: 24px;
   vertical-align: baseline;
   text-transform: capitalize;
   color: #fff;
-  margin: 0 0 0 10px;
 }
 
 /* Right Details */
@@ -109,8 +119,7 @@ h2 {
   color: #29d2e4;
 }
 
-/* GitHub link */
-.GitHub-link {
-  display: block;
+/* GitHub */
+.Github-footer {
   text-align: center;
 }
