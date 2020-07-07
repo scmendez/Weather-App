@@ -27,38 +27,26 @@ function currentDate(timestamp) {
   let date = now.getDate();
   let year = now.getFullYear();
 
-  let hour = now.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  let min = now.getMinutes();
-  if (min < 10) {
-    min = `0${min}`;
-  }
+  //let hour = now.getHours();
+  //if (hour < 10) {
+  //hour = `0${hour}`;
+  //}
+  //let min = now.getMinutes();
+  //if (min < 10) {
+  //min = `0${min}`;
+  //}
 
-  return `${day}, ${month} ${date}, ${year} <br /> ${hour}:${min}`;
+  return `${day}, ${month} ${date}, ${year}`;
+  // ${hour}:${min}
 }
 
-function sunriseTime(timestamp) {
+function sunTime(timestamp) {
   let sunriseTime = new Date(timestamp);
   let hour = sunriseTime.getHours();
   if (hour < 10) {
     hour = `0${hour}`;
   }
   let min = sunriseTime.getMinutes();
-  if (min < 10) {
-    min = `0${min}`;
-  }
-  return `${hour}:${min}`;
-}
-
-function sunsetTime(timestamp) {
-  let sunsetTime = new Date(timestamp);
-  let hour = sunsetTime.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  let min = sunsetTime.getMinutes();
   if (min < 10) {
     min = `0${min}`;
   }
@@ -72,6 +60,12 @@ function updateLocationAndConditions(response) {
   document.querySelector("#current-date").innerHTML = currentDate(
     response.data.dt * 1000
   );
+  document.querySelector("#current-day-high").innerHTML = `${Math.round(
+    response.data.main.temp_max
+  )}°`;
+  document.querySelector("#current-day-low").innerHTML = `${Math.round(
+    response.data.main.temp_min
+  )}°`;
   celsiusTemp = response.data.main.temp;
   document.querySelector("#temp-element").innerHTML = Math.round(
     response.data.main.temp
@@ -90,16 +84,15 @@ function updateLocationAndConditions(response) {
   document.querySelector("#wind-info").innerHTML = response.data.wind.speed;
   document.querySelector("#humidity-info").innerHTML =
     response.data.main.humidity;
-  document.querySelector("#sunrise-info").innerHTML = sunriseTime(
+  document.querySelector("#sunrise-info").innerHTML = sunTime(
     response.data.sys.sunrise * 1000
   );
-  document.querySelector("#sunset-info").innerHTML = sunsetTime(
+  document.querySelector("#sunset-info").innerHTML = sunTime(
     response.data.sys.sunset * 1000
   );
 }
 
 //forecast functions
-
 function forecastDay(timestamp) {
   let forecastDays = new Date(timestamp);
   let dayOptions = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -162,7 +155,6 @@ function forecastDate(timestamp) {
 }
 
 function updateForecast(response) {
-  console.log(response);
   let forecast = null;
   document.querySelector("#weather-forecast").innerHTML = null;
 
@@ -186,7 +178,6 @@ function updateForecast(response) {
 
 //submit and search button functions
 function cityLongitudeLatitude(response) {
-  console.log(response);
   let apiKey = "2f036bba5972d2593243a4f078d73ef2";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&exclude=currently,minutely,hourly&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(updateForecast);
