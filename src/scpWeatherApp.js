@@ -67,6 +67,7 @@ function sunsetTime(timestamp) {
 
 //main function updating everything
 function updateLocationAndConditions(response) {
+  console.log(response);
   document.querySelector("#searched-city").innerHTML = response.data.name;
   document.querySelector("#current-date").innerHTML = currentDate(
     response.data.dt * 1000
@@ -185,16 +186,21 @@ function updateForecast(response) {
 
 //submit and search button functions
 function cityLongitudeLatitude(response) {
+  console.log(response);
   let apiKey = "2f036bba5972d2593243a4f078d73ef2";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&exclude=currently,minutely,hourly&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(updateForecast);
 }
-//updateForecast works but from the consolelog in that function the response doesn't work with updateLocationandConditions
+
+function searchCityForecastAndConditionsCall(response) {
+  cityLongitudeLatitude(response);
+  updateLocationAndConditions(response);
+}
 
 function searchCity(city) {
   let apiKey = "2f036bba5972d2593243a4f078d73ef2";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(cityLongitudeLatitude);
+  axios.get(apiUrl).then(searchCityForecastAndConditionsCall);
 }
 
 function submittedCity(event) {
