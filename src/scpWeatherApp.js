@@ -63,13 +63,15 @@ function updateLocationAndConditions(response) {
   document.querySelector("#current-day-high").innerHTML = `${Math.round(
     response.data.main.temp_max
   )}°`;
+  currentHighCelsiusTemp = response.data.main.temp_max;
   document.querySelector("#current-day-low").innerHTML = `${Math.round(
     response.data.main.temp_min
   )}°`;
-  celsiusTemp = response.data.main.temp;
+  currentLowCelsiusTemp = response.data.main.temp_min;
   document.querySelector("#temp-element").innerHTML = Math.round(
     response.data.main.temp
   );
+  currentCelsiusTemp = response.data.main.temp;
   document
     .querySelector("#current-day-weather-icon")
     .setAttribute(
@@ -155,13 +157,12 @@ function forecastDate(timestamp) {
 }
 
 function updateForecast(response) {
-  let forecast = null;
   document.querySelector("#weather-forecast").innerHTML = null;
 
-  for (let index = 0; index < 6; index++) {
-    let forecast = response.data.daily[index];
+  for (let index = 0; index < 5; index++) {
+    forecast = response.data.daily[index];
     document.querySelector("#weather-forecast").innerHTML += `
-  <div class="col day-one">
+  <div class="col">
       <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
       <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
       <div class="row day-icon">
@@ -174,6 +175,17 @@ function updateForecast(response) {
   </div>
   `;
   }
+
+  dayOneHighCelsiusTemp = response.data.daily[0].temp.max;
+  dayOneLowCelsiusTemp = response.data.daily[0].temp.min;
+  dayTwoHighCelsiusTemp = response.data.daily[1].temp.max;
+  dayTwpLowCelsiusTemp = response.data.daily[1].temp.min;
+  dayThreeHighCelsiusTemp = response.data.daily[2].temp.max;
+  dayThreeLowCelsiusTemp = response.data.daily[2].temp.min;
+  dayFourHighCelsiusTemp = response.data.daily[3].temp.max;
+  dayFourLowCelsiusTemp = response.data.daily[3].temp.min;
+  dayFiveHighCelsiusTemp = response.data.daily[4].temp.max;
+  dayFiveLowCelsiusTemp = response.data.daily[4].temp.min;
 }
 
 //submit and search button functions
@@ -219,22 +231,176 @@ function getCurrentLocation(event) {
 // temp functions
 function updateToFahrenheit(event) {
   event.preventDefault();
-  let updatedFahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  let updatedCurrentFahrenheitTemp = (currentCelsiusTemp * 9) / 5 + 32;
+  let updatedCurrentHighFahrenheitTemp = (currentHighCelsiusTemp * 9) / 5 + 32;
+  let updatedCurrentLowFahrenheitTemp = (currentLowCelsiusTemp * 9) / 5 + 32;
   document.querySelector("#temp-element").innerHTML = Math.round(
-    updatedFahrenheitTemp
+    updatedCurrentFahrenheitTemp
   );
+  document.querySelector("#current-day-high").innerHTML = `${Math.round(
+    updatedCurrentHighFahrenheitTemp
+  )}°`;
+  document.querySelector("#current-day-low").innerHTML = `${Math.round(
+    updatedCurrentLowFahrenheitTemp
+  )}°`;
+
+  dayOneHighFarTemp = (dayOneHighCelsiusTemp * 9) / 5 + 32;
+  dayOneLowFarTemp = (dayOneLowCelsiusTemp * 9) / 5 + 32;
+  dayTwoHighFarTemp = (dayTwoHighCelsiusTemp * 9) / 5 + 32;
+  dayTwoLowFarTemp = (dayTwoLowCelsiusTemp * 9) / 5 + 32;
+  dayThreeHighFarTemp = (dayThreeHighCelsiusTemp * 9) / 5 + 32;
+  dayThreeLowFarTemp = (dayThreeLowCelsiusTemp * 9) / 5 + 32;
+  dayFourHighFarTemp = (dayFourHighCelsiusTemp * 9) / 5 + 32;
+  dayFourLowFarTemp = (dayFourLowCelsiusTemp * 9) / 5 + 32;
+  dayFiveHighFarTemp = (dayFiveHighCelsiusTemp * 9) / 5 + 32;
+  dayFiveLowFarTemp = (dayFiveLowCelsiusTemp * 9) / 5 + 32;
+
+  //how to repeat something 5 times, use For loop? or just this?
+  document.querySelector("#weather-forecast").innerHTML = `
+  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+      <div class="row day-high">${Math.round(dayOneHighFarTemp)}°</div>
+      <div class="row day-low">${Math.round(dayOneLowFarTemp)}°</div>
+  </div>
+    <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayTwoHighFarTemp)}°</div>
+      <div class="row day-low">${Math.round(dayTwoLowFarTemp)}°</div>
+  </div>  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayThreeHighFarTemp)}°</div>
+      <div class="row day-low">${Math.round(dayThreeLowFarTemp)}°</div>
+  </div>  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayFourHighFarTemp)}°</div>
+      <div class="row day-low">${Math.round(dayFourLowFarTemp)}°</div>
+  </div>  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayFiveHighFarTemp)}°</div>
+      <div class="row day-low">${Math.round(dayFiveLowFarTemp)}°</div>
+  </div>
+  `;
+
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
 }
 
 function updateToCelsius(event) {
   event.preventDefault();
-  document.querySelector("#temp-element").innerHTML = Math.round(celsiusTemp);
+  document.querySelector("#temp-element").innerHTML = Math.round(
+    currentCelsiusTemp
+  );
+  document.querySelector("#current-day-high").innerHTML = `${Math.round(
+    currentHighCelsiusTemp
+  )}°`;
+  document.querySelector("#current-day-low").innerHTML = `${Math.round(
+    currentLowCelsiusTemp
+  )}°`;
+
+  document.querySelector("#weather-forecast").innerHTML = `
+  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+      <div class="row day-high">${Math.round(dayOneHighCelsiusTemp)}°</div>
+      <div class="row day-low">${Math.round(dayOneLowCelsiusTemp)}°</div>
+  </div>
+    <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayTwoHighCelsiusTemp)}°</div>
+      <div class="row day-low">${Math.round(dayTwoLowCelsiusTemp)}°</div>
+  </div>  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayThreeHighCelsiusTemp)}°</div>
+      <div class="row day-low">${Math.round(dayThreeLowCelsiusTemp)}°</div>
+  </div>  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayFourHighCelsiusTemp)}°</div>
+      <div class="row day-low">${Math.round(dayFourLowCelsiusTemp)}°</div>
+  </div>  <div class="col">
+      <div class="row day-name">${forecastDay(forecast.dt * 1000)}</div>
+      <div class="row day-date">${forecastDate(forecast.dt * 1000)}</div>
+      <div class="row day-icon">
+        <img src="https://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="weather-icons">
+      </div>
+   <div class="row day-high">${Math.round(dayFiveHighCelsiusTemp)}°</div>
+      <div class="row day-low">${Math.round(dayFiveLowCelsiusTemp)}°</div>
+  </div>
+  `;
+
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 }
 
-let celsiusTemp = null;
+//global variables
+let currentCelsiusTemp = null;
+let currentHighCelsiusTemp = null;
+let currentLowCelsiusTemp = null;
+let forecast = null;
+let dayOneHighCelsiusTemp = null;
+let dayOneLowCelsiusTemp = null;
+let dayTwoHighCelsiusTemp = null;
+let dayTwoLowCelsiusTemp = null;
+let dayThreeHighCelsiusTemp = null;
+let dayThreeLowCelsiusTemp = null;
+let dayFourHighCelsiusTemp = null;
+let dayFourLowCelsiusTemp = null;
+let dayFiveHighCelsiusTemp = null;
+let dayFiveLowCelsiusTemp = null;
 
 //event listeners
 let searchCityForm = document.querySelector("#search-city");

@@ -1,5 +1,6 @@
 h1 {
   margin-top: -10px;
+  color: #fff;
 }
 
 h2 {
@@ -14,7 +15,7 @@ h2 {
   padding: 10px;
   border: solid 1px green;
   border-radius: 10px;
-  width: 500px;
+  width: 450px;
   box-shadow: 5px 5px 8px lightgray;
 }
 
@@ -48,6 +49,7 @@ h2 {
   text-align: center;
   font-size: 60px;
   margin: -10px;
+  color: #fff;
 }
 .temp-units {
   font-size: 14px;
@@ -60,7 +62,8 @@ h2 {
   color: #fff;
 }
 .temp-units .active {
-  color: #000;
+  color: #fff;
+  font-weight: bold;
   cursor: default;
 }
 .temp-units .active:hover {
@@ -83,7 +86,9 @@ h2 {
 .detail-titles {
   color: white;
 }
-
+.detail-info {
+  color: #add8e6;
+}
 /* Weather Forecast*/
 .weather-forecast {
   text-align: center;
