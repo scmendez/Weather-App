@@ -55,7 +55,6 @@ function sunTime(timestamp) {
 
 //main function updating everything
 function updateLocationAndConditions(response) {
-  console.log(response);
   document.querySelector("#searched-city").innerHTML = response.data.name;
   document.querySelector("#current-date").innerHTML = currentDate(
     response.data.dt * 1000
