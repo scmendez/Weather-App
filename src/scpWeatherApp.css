@@ -7,6 +7,7 @@ h2 {
   font-size: 20px;
   color: #add8e6;
   font-weight: 300;
+  margin-bottom: 0px;
 }
 
 .entire-app {
@@ -15,7 +16,7 @@ h2 {
   padding: 10px;
   border: solid 1px green;
   border-radius: 10px;
-  width: 450px;
+  width: 425px;
   box-shadow: 5px 5px 8px lightgray;
 }
 
@@ -47,16 +48,17 @@ h2 {
 .current-day-temp {
   display: block;
   text-align: center;
-  font-size: 60px;
-  margin: -10px;
+  font-size: 75px;
+  margin-bottom: -20px;
+  margin-left: -40px;
   color: #fff;
 }
 .temp-units {
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
   position: relative;
-  top: -80px;
-  right: -210px;
+  top: -70px;
+  right: -170px;
 }
 .temp-units a {
   color: #fff;
@@ -69,12 +71,15 @@ h2 {
 .temp-units .active:hover {
   text-decoration: none;
 }
+.current-day-weather-description {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
 .current-day-weather-icon {
-  width: 60px;
+  width: 25px;
+  margin-bottom: 3px;
 }
 .current-day-weather-word {
-  font-size: 24px;
-  vertical-align: baseline;
   text-transform: capitalize;
   color: #fff;
 }
@@ -92,6 +97,7 @@ h2 {
 /* Weather Forecast*/
 .weather-forecast {
   text-align: center;
+  margin-top: -10px;
 }
 .day-name,
 .day-date,
@@ -116,6 +122,8 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   width: 65%;
+  margin-top: -10px;
+  margin-bottom: -5px;
 }
 .day-high {
   color: #fcc29a;
