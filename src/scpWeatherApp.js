@@ -83,7 +83,9 @@ function updateLocationAndConditions(response) {
     .setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#current-day-weather-word").innerHTML =
     response.data.weather[0].description;
-  document.querySelector("#wind-info").innerHTML = response.data.wind.speed;
+  document.querySelector(
+    "#wind-info"
+  ).innerHTML = `${response.data.wind.speed} km/hr`;
   document.querySelector("#humidity-info").innerHTML =
     response.data.main.humidity;
   document.querySelector("#sunrise-info").innerHTML = sunTime(
@@ -92,6 +94,8 @@ function updateLocationAndConditions(response) {
   document.querySelector("#sunset-info").innerHTML = sunTime(
     response.data.sys.sunset * 1000
   );
+
+  windSpeedKm = response.data.wind.speed;
 }
 
 //forecast functions
@@ -258,6 +262,11 @@ function updateToFahrenheit(event) {
     updatedCurrentLowFahrenheitTemp
   )}°`;
 
+  windSpeedMiles = windSpeedKm / 1.609;
+  document.querySelector("#wind-info").innerHTML = `${Math.round(
+    windSpeedMiles
+  )} m/hr`;
+
   dayOneHighFarTemp = (dayOneHighCelsiusTemp * 9) / 5 + 32;
   dayOneLowFarTemp = (dayOneLowCelsiusTemp * 9) / 5 + 32;
   dayTwoHighFarTemp = (dayTwoHighCelsiusTemp * 9) / 5 + 32;
@@ -329,6 +338,8 @@ function updateToCelsius(event) {
   document.querySelector("#current-day-low").innerHTML = `${Math.round(
     currentLowCelsiusTemp
   )}°`;
+
+  document.querySelector("#wind-info").innerHTML = `${windSpeedKm} km/hr`;
 
   document.querySelector("#weather-forecast").innerHTML = `
   <div class="col">
@@ -404,6 +415,8 @@ let dayFiveDayDate = null;
 let dayFiveIcon = null;
 let dayFiveHighCelsiusTemp = null;
 let dayFiveLowCelsiusTemp = null;
+let windSpeedKm = null;
+let windSpeedMiles = null;
 
 //event listeners
 let searchCityForm = document.querySelector("#search-city");
