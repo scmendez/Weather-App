@@ -1,8 +1,10 @@
-This project was bootstrapped for [SheCodes](https://www.shecodes.io/) Plus Workshop.
+This project was created for [SheCodes](https://www.shecodes.io/) Plus Workshop (May 2020 - July 2020)
 
-## Languages Used
+### Languages Used
 
-HTML, CSS, JavaScript (ES5)
+- HTML <br />
+- CSS <br />
+- JavaScript (ES5)
 
 ### Links
 
