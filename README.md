@@ -7,4 +7,5 @@ HTML, CSS, JavaScript (ES5)
 ### Links
 
 Deployment (Netlify): [Link](https://jovial-saha-003b81.netlify.app/)
+<br />
 GitHub Repo: [Link](https://github.com/scmendez/Weather-App)
